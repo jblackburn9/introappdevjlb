@@ -17,6 +17,7 @@ namespace ConsoleApp1
         //private data members cannot be reached directly by the user
         //public data members can be reached directly by the user
         private int _Size;
+        private string _Colour;
 
 
         //properties
@@ -38,6 +39,31 @@ namespace ConsoleApp1
                 //the incoming piece of data is placed into a special
                 //variable called value
                 _Size = value;
+            }
+        }
+
+        //auto-implemented properties are just like this
+        public int Face
+        { get; set; }
+
+        public string Colour
+        {
+            get
+            {
+                return _Colour;
+            }
+            set
+            {
+                //(value == null) will fail for an empty string
+                //(value =="") will fail for a null string
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Colour has no value.");
+                }
+                else
+                {
+                    _Colour = value;
+                }
             }
         }
 
