@@ -47,9 +47,9 @@ namespace ConsoleApp1
             }
         }
 
-        //auto-implemented properties are just like this
+        //auto-implemented properties are just get;set;
         public int Face
-        { get; set; }
+        { get; private set; }
 
         public string Colour
         {
