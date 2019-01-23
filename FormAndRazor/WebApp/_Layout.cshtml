@@ -8,9 +8,14 @@
     @RenderSection("head", required: false)
 </head>
 <body>
-    @DateTime.Today.ToLongDateString()
+    @RenderPage("~/_menu.cshtml")
+    
+    <br />
+    <br />
+    <br />
+    
     <div class="container-fluid">
-        <div class="jumbotron">
+        <div class="jumbotron">            
             @RenderSection("banner")
         </div>
         @RenderBody()
