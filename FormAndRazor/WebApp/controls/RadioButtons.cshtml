@@ -1,9 +1,68 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
+    Page.Title = "RadioButtons";
+    //obtain the incoming data values
+    var language = Request.Form["languagegroup"];
+    var script = Request.Form["scriptgroup"];
 }
 
 @section banner
 {
     <h1>RadioButtons</h1>
 }
+
+@if (IsPost)
+{
+    if (language.IsEmpty() || script.IsEmpty())
+    {
+    <p><span style="color:firebrick">Make a selection from both coding and scripting.</span></p>
+    }
+    else
+    {
+        if (language.Equals("C#", StringComparison.OrdinalIgnoreCase))
+        {
+        <p>You will greatly enjoy the CPSC1517 course as we use C#</p>
+        }
+        else
+        {
+        <p> Too bad. The CPSC1517 course uses C#.</p>
+        }
+        if (script.Equals("RAZOR", StringComparison.OrdinalIgnoreCase))
+        {
+        <p>You will greatly enjoy the CPSC1517 course as we use Razor</p>
+        }
+        else
+        {
+        <p> Too bad. The CPSC1517 course uses Razor.</p>
+        }
+    }
+ } 
+
+
+<!--what makes a radiobutton group is the fact that the id= parameter is the smae on each control. if you wish to have multiple groups, give them different ids-->
+
+<form id="theform" method="post">
+    <div class="row">
+        <div class="col-md-offset-2">
+            <label id="languagegroup">Select your favourite programming language</label>
+            </br>
+            <input type="radio" id="languagegroup" name="languagegroup" value="C#" checked="@language.Equals("C#")?true:false"/>C#<br />
+            <input type="radio" id="languagegroup" name="languagegroup" value="VB" />Visual Basic<br />
+            <input type="radio" id="languagegroup" name="languagegroup" value="ObjectiveC" />Objective C<br />
+            <input type="radio" id="languagegroup" name="languagegroup" value="Cobol" />Cobol<br />
+            <input type="radio" id="languagegroup" name="languagegroup" value="Fortran" />Fortran<br />
+            <input type="radio" id="languagegroup" name="languagegroup" value="Pascal" />Pascal<br />
+
+            <label id="scriptgroup">Select your favourite scripting code</label><br />
+            <input type="radio" id="scriptgroup" name="scriptgroup" value="JS" />Javascript<br />
+            <input type="radio" id="scriptgroup" name="scriptgroup" value="Razor" />Razor<br />
+            <input type="radio" id="scriptgroup" name="scriptgroup" value="PHP" />PHP<br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3">
+            <button type="submit" class="btn btn-primary" id="formbutton" name="formbutton" value="submit">Submit</button>
+        </div>
+    </div>
+</form>
 
