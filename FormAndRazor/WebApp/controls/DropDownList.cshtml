@@ -3,7 +3,63 @@
 }
 
 
+@section head{
+    <link href="~/Content/mycustomstyles.css" rel="stylesheet" />
+}
+
+
 @section banner
 {
     <h1>DropDownList(select tag)</h1>
 }
+
+@if (IsPost)
+{
+    var choice = Request.Form["pageselection"];
+    switch (choice.ToUpper())
+    {
+        case "TEXTBOXES":
+            {
+                //to redirect yourself to another page you use the respone.Redirect command
+                //this command needs the destination page as an argument value
+                //use relative addressing to get to your destination page
+                Response.Redirect("Textboxes.cshtml");
+                break;
+            }
+        case "RADIOBUTTONS":
+            {
+                Response.Redirect("Radiobuttons.cshtml");
+                break;
+            }
+        case "CHECKBOXES":
+            {
+                Response.Redirect("Checkboxes.cshtml");
+                break;
+            }
+        default:
+            {
+                <p><span style="color:firebrick"><strong>Make a page choice from the list.</strong></span></p>
+                break;
+            }
+    }
+}
+
+<form id="theform" method="post">
+    <div class="row">
+        <div class="col-md-offset-4">
+            <label for="pageselection">Select sample page:</label>
+            &nbsp;&nbsp;
+            <!--the select tag is used for a dropdown list-->
+            <!--each item in the list is setup using the option tag-->
+            <!--a data value is associated with the list item by using the value attribute-->
+            <select id="pageselection" name="pageselection">
+                <option value="">select ...</option>
+                <option value="textboxes">Text Boxes</option>
+                <option value="radiobuttons"> Radio Buttons</option>
+                <option value="checkboxes"> Checkboxes</option>
+            </select>
+            &nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" id="formbutton" name="formbutton" value="Submit">Submit</button>
+        </div>
+    </div>
+</form>
