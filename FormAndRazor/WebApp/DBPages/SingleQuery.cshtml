@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "DB - Single Query";
+
+    var searcharg = Request.Form["searcharg"];
+    var regionid = "";
+    var description = "";
+
+    //remember that on the first page pass the form has not been displayed
+    //searcharg will be null
+    //looking up a sql table by primary key using a value of null will not be successful
+    if (String.IsNullOrEmpty(searcharg))
+    {
+        searcharg = "0";
+    }
+
+    //connect to database "pipline"
+    var db = Database.Open("NWDB");
+
+    //create the command to be exectued on the database
+    //this command can be coded over multiple physical lines as a concatenation
+    //values which will be passed with the command are coded with placeholders
+    //a placeholder is @n where n is an index value
+    //on exectuiaoin, the placeholder will be changed to supplied argument value
+    var querycommand = "SELECT RegionID, RegionDescription "
+                    + "FROM Region "
+                    + "WHERE RegionID = @0";
+    //execute command on database
+    //capture results of execution
+    //.QuerySingle() used when one expects a single record to be returned
+    //.Query used when one expects 0, 1, or more records to be returned
+    //.QueryValue used when one expects a single value (**NOT RECORD**) to be returned
+    var results = db.QuerySingle(querycommand, searcharg);
+}
+
+@section banner
+{
+    <h1>Database: Single Query</h1>
+}
+
+<form id="theform" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="searcharg">Enter Region ID:</label>
+            <input type="text" id="searcharg" name="searcharg"placeholder="Enter Region ID"value=" @searcharg" />
+            <br />
+            <button type="submit" id="formbutton" name="formbutton" class="btn btn-primary" value="search">Search</button>
+            &nbsp; &nbsp;
+            <button type="submit" id="formbutton" name="formbutton"class="btn" value="clear">Clear</button>
+        </div>
+        <div class="col-md-8">
+            <label for="regionid">Region ID:</label>
+            <input type="text" id="regionid" name="regionid" value=" @regionid" />
+            <br />
+            <label for="description">Region Name:</label>
+            <input type="text" id="description" name="description" value=" @description" />
+            <br />
+        </div>
+    </div>
+</form>
