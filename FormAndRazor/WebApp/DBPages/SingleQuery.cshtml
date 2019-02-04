@@ -5,6 +5,7 @@
     var searcharg = Request.Form["searcharg"];
     var regionid = "";
     var description = "";
+    var thebutton = Request.Form["formButton"];
 
     //remember that on the first page pass the form has not been displayed
     //searcharg will be null
@@ -38,11 +39,43 @@
     <h1>Database: Single Query</h1>
 }
 
+@if(IsPost)
+{
+    if(thebutton.Equals("Clear"))
+    {
+        searcharg = "0";
+        regionid = "";
+        description = "";
+
+    }
+    else
+    {
+        //test to see if any record was returned from the query
+        //if no record was returned then the results will be null
+        if (results == null)
+        {
+            <p><span style="color:blue">No data found for region id  @searcharg</span></p>
+            regionid = "";
+            description = "";
+        }
+        else
+        {
+            //a record was actually retrieved, so set your output fields
+            //how does one access a data field on the results data records?
+            //a) via index xxxx[columnindex]
+            //b) via the column title xxxx.columntitlename
+            <p><span style="color:green">Found</span></p>
+            regionid = results[0]; //needs to be a string
+            description = results.RegionDescription;
+        }
+    }
+}
+
 <form id="theform" method="post">
     <div class="row">
         <div class="col-md-4">
             <label for="searcharg">Enter Region ID:</label>
-            <input type="text" id="searcharg" name="searcharg"placeholder="Enter Region ID"value=" @searcharg" />
+            <input type="number" id="searcharg" name="searcharg"placeholder="Enter Region ID" step="1" min="0" max="" value=" @searcharg" />
             <br />
             <button type="submit" id="formbutton" name="formbutton" class="btn btn-primary" value="search">Search</button>
             &nbsp; &nbsp;
@@ -50,7 +83,7 @@
         </div>
         <div class="col-md-8">
             <label for="regionid">Region ID:</label>
-            <input type="text" id="regionid" name="regionid" value=" @regionid" />
+            <input type="text" id="regionid" name="regionid" value=" @regionid;" />
             <br />
             <label for="description">Region Name:</label>
             <input type="text" id="description" name="description" value=" @description" />
