@@ -156,6 +156,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="SamplePages\Basiccontrols.aspx" />
     <Content Include="SamplePages\firstpage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -190,6 +191,9 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -219,6 +223,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamplePages\Basiccontrols.aspx.cs">
+      <DependentUpon>Basiccontrols.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\Basiccontrols.aspx.designer.cs">
+      <DependentUpon>Basiccontrols.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\firstpage.aspx.cs">
       <DependentUpon>firstpage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
