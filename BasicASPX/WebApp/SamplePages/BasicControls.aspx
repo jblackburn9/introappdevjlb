@@ -5,7 +5,7 @@
             <td align="right">TextBox</td>
             <td>
                 <asp:TextBox ID="TextBoxNumberChoice" runat="server"
-                     ToolTip="Enter a choice of 1 to 4"></asp:TextBox>
+                     ToolTip="Enter a choice of 1 to 4" ></asp:TextBox>
                 &nbsp;&nbsp;
                 <asp:Button ID="SubmitButtonChoice" runat="server" Text="Submit Choice" OnClick="SubmitButtonChoice_Click" />
             </td>
@@ -61,4 +61,6 @@
             
         </tr>
     </table>
+
+
 </asp:Content>
