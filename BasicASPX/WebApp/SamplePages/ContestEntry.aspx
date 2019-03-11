@@ -16,7 +16,12 @@
 
         </div>
     </div>
-  
+
+    <asp:RequiredFieldValidator ID="RequiredFieldFirstName" runat="server" ErrorMessage="Missing First Name"></asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredFieldLastName" runat="server" ErrorMessage="Missing Last Name"></asp:RequiredFieldValidator>
+      
+
+
     <div class="row">
         <div class ="col-md-6">
             <fieldset class="form-horizontal">
@@ -85,13 +90,17 @@
         <div class="col-md-6">   
             <div class="col-md-offset-2">
                 <p>
-                    <asp:Button ID="Submit" runat="server" Text="Submit" />&nbsp;&nbsp;
-                    <asp:Button ID="Clear" runat="server" Text="Clear" CausesValidation="true"  />
+                    <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />&nbsp;&nbsp;
+                    <asp:Button ID="Clear" runat="server" Text="Clear" CausesValidation="true" OnClick="Clear_Click"  />
                 </p>
                 <asp:Label ID="Message" runat="server" ></asp:Label><br />
             
+                <asp:GridView ID="GridView1" runat="server" >
+                </asp:GridView>
+            
             </div>
         </div>
+
     </div>
     <script src="../Scripts/bootwrap-freecode.js"></script>
 </asp:Content>

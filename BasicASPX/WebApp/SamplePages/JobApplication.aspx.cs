@@ -53,7 +53,7 @@ namespace WebApp.SamplePages
             FullName.Text = "";
             EmailAddress.Text = "";
             PhoneNumber.Text = "";
-            FullOrPartTime.Text = "";
+            FullOrPartTime.SelectedIndex = -1;
             //FullOrPartTime.ClearSelection();
             //Jobs.SelectedIndex = -1;
             Jobs.ClearSelection();
