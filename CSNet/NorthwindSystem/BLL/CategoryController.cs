@@ -28,5 +28,7 @@ namespace NorthwindSystem.BLL
                 return context.Categories.ToList();
             }
         }
+
+
     }
 }

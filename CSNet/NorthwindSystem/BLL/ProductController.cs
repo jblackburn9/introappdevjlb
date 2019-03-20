@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using NorthwindSystem.Data; //obtains the <T> definitions
 using NorthwindSystem.DAL; //obtains the context class
+using System.Data.SqlClient; //required for the parameter used in Sql Proc Calls
 #endregion
 
 namespace NorthwindSystem.BLL
@@ -44,6 +45,21 @@ namespace NorthwindSystem.BLL
             }
         }
 
+        //this method will query the DbSet<T> using a sql procedure
+        //the query will be against a non primary key field
+        //the result return will still be the entity complete entity <T> record
+        //we need to add a using clause to System.Data.SqlClient to our class
+        //input:category id
+        //output: List<Product> matching categoryid
+        public List<Product> Product_GetByCategory(int categoryid)
+        {
+            using (var context = new NorthwindContext())
+            {
+                //generally datasets from DbSet calls return as a datatype of IEnumerable<T>
+                IEnumerable<Product> results = context.Database.SqlQuery<Product>("Products_GetByCategories @CategoryID", new SqlParameter("CategoryID", categoryid));
+                return results.ToList();
 
+            }
+        }
     }
 }
