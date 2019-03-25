@@ -23,7 +23,14 @@
             </tr>
             <tr>
                 <td align="center">
-                    <asp:GridView ID="CategoryProductList" runat="server"></asp:GridView>
+                    <asp:GridView ID="CategoryProductList" runat="server" AllowPaging="True" 
+                        PagerSettings-PageButtonCount="5" 
+                        AlternatingRowStyle-BackColor="#CCCCFF"
+                            OnPageIndexChanging="">
+                        <PagerSettings FirstPageText="Start" 
+                            LastPageText="End" Mode="
+                            NumericFirstLast" />
+                    </asp:GridView>
                 </td>
 
             </tr>
